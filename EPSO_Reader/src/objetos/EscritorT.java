@@ -2,7 +2,7 @@ package objetos;
 
 import java.util.Random;
 
-public class EscritorT extends Thread {
+public class EscritorT extends Thread {// representa um escritor no modelo que não permite acesso concorrente
 	private Base b;
 	private Random r;
 	private Testador t;
@@ -21,7 +21,7 @@ public class EscritorT extends Thread {
 		try {
 			a.bd.acquire(); //pega bd
 			b = a.getBase();
-			
+			//escreve na base
 			for(int i=0; i<100; i++){
 				pos = r.nextInt()%b.getTamanho();
 				b.escrever(escrever, pos);

@@ -2,7 +2,7 @@ package objetos;
 
 import java.util.Random;
 
-public class LeitorT extends Thread{
+public class LeitorT extends Thread{// representa um leitor no modelo que não permite acesso concorrente
 	private GerenciadorAcesso a;
 	private Testador t;
 	private Random r;
@@ -19,9 +19,9 @@ public class LeitorT extends Thread{
 	public void run() {
 		int pos;
 		try {
-			a.bd.acquire();
+			a.bd.acquire(); //trava a base
 			b = a.getBase();
-			
+			//le
 			for(int i=0; i<100; i++){
 				pos = r.nextInt()%b.getTamanho();
 				s = b.ler(pos);
@@ -29,7 +29,7 @@ public class LeitorT extends Thread{
 			
 			Thread.sleep(1);
 			
-			a.bd.release();
+			a.bd.release(); //libera a base
 			
 			t.travaContadorRodando.acquire(); //trava o contador de threads do testador
 			t.qtdRodando--;

@@ -9,11 +9,12 @@ import java.util.concurrent.Semaphore;
 public class Testador {
 	private int qtdLeitores, qtdEscritores, qtdTestes;
 	private long inicio,fim;
-	private boolean acessoConcorrente; //
+	private boolean acessoConcorrente; //determina que tipo de threds serao instanciadas
 	private List<Thread> threads;
 	private Random r;
-	public Semaphore rodandoMutex, travaContadorRodando; //primeiro Semáforo faz o testador dormir depois de iniciar todas as threads,
-	//o segundo é utilizado pelas para atualizar o valor de threads ativas
+	public Semaphore rodandoMutex, travaContadorRodando; 
+	//o primeiro mutex faz o testador dormir depois de iniciar todas as threads,
+	//o segundo é utilizado pelas threads para atualizar o valor de threads ativas
 	public int qtdRodando;
 	private Base b;
 	
@@ -25,14 +26,14 @@ public class Testador {
 	}
 	
 	
-	public void setup(int leitores, int escritores, int testes, boolean acessoConcorrente){
+	public void setup(int leitores, int escritores, int testes, boolean acessoConcorrente){ //seta as variaveis para o proximo teste
 		this.qtdLeitores = leitores;
 		this.qtdEscritores = escritores;
 		this.qtdTestes = testes;
 		this.acessoConcorrente = acessoConcorrente;
 	}
 	
-	public double runTest(){
+	public double runTest(){//roda o teste e retorna a media de tempo em ms obtida
 		double media=0;
 		Thread aux;
 		GerenciadorAcesso mgr;

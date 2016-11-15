@@ -2,7 +2,7 @@ package objetos;
 
 import java.util.Random;
 
-public class Leitor extends Thread{
+public class Leitor extends Thread{ //representa um Leitor para o modelo que permite acesso concorrente
 	private GerenciadorAcesso a;
 	private Testador t;
 	private Random r;

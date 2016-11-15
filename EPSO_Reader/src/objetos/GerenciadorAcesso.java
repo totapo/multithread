@@ -2,7 +2,7 @@ package objetos;
 
 import java.util.concurrent.Semaphore;
 
-public class GerenciadorAcesso {
+public class GerenciadorAcesso {//contém os semáforos utilizados pelas threads (escritores e leitores) para acessar a base compartilhada
 	public Semaphore rmutex, wmutex,readTry, bd;
 	
 	public int readCount, writeCount;
